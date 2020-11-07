@@ -1,9 +1,9 @@
-const { Router } = require("express");
-const { contactService } = require("../services");
+const { Router } = require('express');
+const { contactService } = require('../services');
 
 const routes = Router();
 
-routes.get("", async (req, res) => {
+routes.get('', async (req, res) => {
     const contacts = await contactService.list();
     return res.status(200).json(contacts);
 });
