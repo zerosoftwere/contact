@@ -1,13 +1,15 @@
-const { model } = require("mongoose");
+const User = require('../models/users');
 
 module.exports = {
-    findBUsername: function(username) {
-        //find a user by username
+    findBUsername: async function(username) {
+        return await User.findOne({username});
     },
-    list: function() {
-        // return all users
+
+    list: async function() {
+        return await User.find();
     },
-    create: function(newUser) {
-        
+
+    create: async function(newUser) {
+        return await User.create(newUser);
     }
 }

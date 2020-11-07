@@ -1,27 +1,12 @@
-const mongoose = requrie("mongoose");
-var jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const { Schema, ObjectId } = require("mongoose");
 
-var Schema = mongoose.Schema;
-var model = module.exports;
+const UserSchema = new Schema({
+  id: ObjectId,
+  username: String,
+  password: String,
+});
 
-model.accessTokenLifetime = 20;
+const User = mongoose.model("User", UserSchema);
 
-// const userSchema = mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true,
-//     max: 255,
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     max: 20,
-//   },
-//   password: {
-//     type: String,
-//     required: true,
-//     max: 255,
-//   },
-// });
-
-module.exports = mongoose.model("User", userSchema);
+module.exports = User;
