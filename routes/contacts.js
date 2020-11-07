@@ -1,13 +1,10 @@
 const { Router } = require("express");
-const Contact = require("../models/contacts");
+const { contactService } = require("../services");
 
 const routes = Router();
 
-routes.get("/", (req, res) => {
-  const user = new User({
-    firstname: req.body.firstname,
-  });
-  res.status(200).send("contacts");
+routes.get("", (req, res) => {
+  res.status(200).send(contactService.list());
 });
 
 routes.get("/:id", (req, res) => {
