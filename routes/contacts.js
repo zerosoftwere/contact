@@ -8,7 +8,7 @@ routes.get('', (req, res) => {
 });
 
 routes.get('/:id', (req, res) => {
-    res.status(200).send(req.params.id);
+    res.status(200).send(contactService.retrive(req.params.id));
 });
 
 routes.put('/:id', (req, res) => {
