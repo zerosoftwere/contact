@@ -12,7 +12,7 @@ module.exports = {
     },
 
     register: async function(newUser) {
-        const passwordHash = bcrypt.hashSync(newUser.password, 10);
+        const passwordHash = bcrypt.hashSync(newUser.password, 2);
         const user = {username: newUser.username, password: passwordHash};
         return await userService.create(user);
     },

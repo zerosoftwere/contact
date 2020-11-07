@@ -1,4 +1,5 @@
 const supertest = require("supertest");
+const { hashSync } = require('bcrypt');
 const sinon = require("sinon");
 
 const { userService } = require('../services');
@@ -13,7 +14,7 @@ describe("Authentication", function() {
     });
 
     it("it should authenticate on valid credentials", function(done) {
-        sinon.stub(userService, 'findByUsername').returns({username: 'test', password: 'secret'});
+        sinon.stub(userService, 'findByUsername').returns({username: 'test', password: hashSync('secret', 1)});
 
         agent.post("/auth/login").send({username: 'test', password: 'secret'})
             .expect(200).end(done);
