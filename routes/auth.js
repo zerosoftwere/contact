@@ -1,9 +1,7 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
 const routes = Router();
 
-routes.get('/login', () => {
-    
-});
+routes.get("/login", () => {});
 
 module.exports = routes;

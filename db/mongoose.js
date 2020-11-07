@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 mongoose
-  .connect("", {})
+  .connect(process.env.DB_CONNECT, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  })
   .then(() => {
     console.log("Database successfully connected");
   })
