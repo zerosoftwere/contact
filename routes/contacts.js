@@ -1,9 +1,10 @@
 const { Router } = require('express');
+const { contactService } = require('../services');
 
 const routes = Router();
 
 routes.get('', (req, res) => {
-    res.status(200).send('contacts');
+    res.status(200).send(contactService.list());
 });
 
 routes.get('/:id', (req, res) => {
