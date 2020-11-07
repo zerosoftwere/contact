@@ -6,17 +6,19 @@ const routes = Router();
 
 routes.get("", async (req, res) => {
     const contacts = await contactService.list();
-    res.status(200).json(contacts);
+    return res.status(200).json(contacts);
 });
 
 routes.post('', async (req, res) => {
     const newContact = req.body;
     const contact = await contactService.create(newContact);
-    res.status(201).json(contact);
+
+    return res.status(201).json(contact);
 });
 
 routes.get('/:id', async (req, res) => {
     const contact = await contactService.retrive(req.params.id);
+
     if (contact) return res.status(200).json(contact);
     return res.sendStatus(404);
 });
@@ -26,7 +28,7 @@ routes.put('/:id', async (req, res) => {
     const id = req.params.id;
 
     const contact = await contactService.update(id, contact);
-    res.status(200).json(contact);
+    return res.status(200).json(contact);
 });
 
 routes.delete('/:id', async (req, res) => {
