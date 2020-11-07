@@ -1,18 +1,15 @@
-const contacts = [
-    {id: 1, fnane: 'John', lname: 'Doe', phone: '000000000'},
-    {id: 2, fnane: 'Jenny', lname: 'Doe', phone: '000000111'},
-];
+const Contact = require('../models/contacts');
 
 module.exports = {
-    create: function(newContact) {
-        contacts.push(newContact);
-        return newContact;
+    create: async function(newContact) {
+        const contact = new Contact(newContact);
+        return await contact.save();
     },
-    list: function() {
-        return contacts;
+    list: async function() {
+        return await Contact.find();
     },
     retrive: function(id) {
-        return contacts.find(contact => contact.id == id);
+        return Contact.findById(id);
     },
     update: function(id, newContact) {
         return newContact;

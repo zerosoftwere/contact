@@ -17,8 +17,8 @@ routes.post('', (req, res) => {
 
 routes.get('/:id', (req, res) => {
     const contact = contactService.retrive(req.params.id);
-    if (contact) res.status(200).json(contact);
-    else res.sendStatus(404);
+    if (contact) return res.status(200).json(contact);
+    return res.sendStatus(404);
 });
 
 routes.put('/:id', (req, res) => {
@@ -31,7 +31,10 @@ routes.put('/:id', (req, res) => {
 
 routes.delete('/:id', (req, res) => {
     const id = req.params.id;
-    res.sendStatus(204);
+    const result = contactService.delete(id);
+    
+    if (result) return res.sendStatus(204);
+    return res.sendStatus(404);
 });
 
 module.exports = routes;
