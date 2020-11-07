@@ -4,34 +4,34 @@ require("../db/mongoose");
 
 const routes = Router();
 
-routes.get("", (req, res) => {
-  res.status(200).send(contactService.list());
+routes.get("", async (req, res) => {
+    const contacts = await contactService.list();
+    res.status(200).json(contacts);
 });
 
-routes.post('', (req, res) => {
+routes.post('', async (req, res) => {
     const newContact = req.body;
-
-    const contact = contactService.create(newContact);
+    const contact = await contactService.create(newContact);
     res.status(201).json(contact);
 });
 
-routes.get('/:id', (req, res) => {
-    const contact = contactService.retrive(req.params.id);
+routes.get('/:id', async (req, res) => {
+    const contact = await contactService.retrive(req.params.id);
     if (contact) return res.status(200).json(contact);
     return res.sendStatus(404);
 });
 
-routes.put('/:id', (req, res) => {
+routes.put('/:id', async (req, res) => {
     const newContact = req.body;
     const id = req.params.id;
 
-    const contact = contactService.update(id, contact);
+    const contact = await contactService.update(id, contact);
     res.status(200).json(contact);
 });
 
-routes.delete('/:id', (req, res) => {
+routes.delete('/:id', async (req, res) => {
     const id = req.params.id;
-    const result = contactService.delete(id);
+    const result = await contactService.delete(id);
     
     if (result) return res.sendStatus(204);
     return res.sendStatus(404);

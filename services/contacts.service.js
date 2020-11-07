@@ -2,17 +2,16 @@ const Contact = require('../models/contacts');
 
 module.exports = {
     create: async function(newContact) {
-        const contact = new Contact(newContact);
-        return await contact.save();
+        return await Contact.create(newContact);
     },
     list: async function() {
         return await Contact.find();
     },
-    retrive: function(id) {
-        return Contact.findById(id);
+    retrive: async function(id) {
+        return await Contact.findById(id);
     },
-    update: function(id, newContact) {
-        return newContact;
+    update: async function(id, newContact) {
+        return await newContact;
     },
     delete: function() {
         return true;
