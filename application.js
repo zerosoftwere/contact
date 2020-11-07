@@ -10,7 +10,7 @@ routes.intialize(application);
 
 
 application.get('/', (req, res) => {
-    res.status(200).json('hello world');
+    res.status(200).json('sever is up and running');
 });
 
 module.exports = { application };
