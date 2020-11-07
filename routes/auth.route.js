@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { authService, userService } = require('../services');
+const { authService } = require('../services');
 
 const routes = Router();
 
@@ -12,10 +12,12 @@ routes.post('/login', async (req, res) => {
 });
 
 routes.post('/register', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await userService.create({username, password});
-
-    return res.status(201).json(user);
+    try {
+        const user = await authService.register(req.body);
+        return res.sendStatus(201);
+    } catch (error) {
+        return res.status(400).json(error);
+    }
 });
 
 routes.post('/refresh', async (req, res) => {

@@ -1,12 +1,20 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const { secret } = require('../config');
 const userService = require('./user.service');
 
 module.exports = {
     authenticate: async function(username, password) {
         const user = await userService.findByUsername(username);
-        if (user.password !== password) return null;
-        return this.sign(user);
+        if (user && bcrypt.compareSync(password, user.password))
+            return this.sign(user);
+        return null;
+    },
+
+    register: async function(newUser) {
+        const passwordHash = bcrypt.hashSync(newUser.password, 10);
+        const user = {username: newUser.username, password: passwordHash};
+        return await userService.create(user);
     },
 
     refresh: async function(token) {
