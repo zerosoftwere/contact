@@ -1,6 +1,5 @@
 const supertest = require("supertest");
 const sinon = require("sinon");
-const assert = require('assert');
 
 const { userService } = require('../services');
 const { application } = require("../application");

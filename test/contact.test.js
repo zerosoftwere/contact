@@ -1,12 +1,17 @@
 const supertest = require("supertest");
 const sinon = require("sinon");
 const assert = require('assert');
-const { contactService } = require('../services');
+const { contactService, authService } = require('../services');
 const { application } = require("../application");
 
-const agent = supertest.agent(application);
+const agent = supertest.agent(application)
 
 describe("Contacts", function() {
+
+    beforeEach(async function () {
+        const { token } = await authService.sign({username: 'test'});
+        agent.set('Authorization', `Bearer ${token}`);
+    });
 
     afterEach(function () {
         sinon.restore();
