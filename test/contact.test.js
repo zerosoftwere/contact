@@ -30,7 +30,7 @@ describe("Contacts", function() {
       agent.get("/contacts/2").expect(200).end(done);
     });
 
-    it("it should not get not none existing contact", function(done) {
+    it("it should not get none existing contact", function(done) {
         sinon.stub(contactService, 'retrive').withArgs('3').returns(null);
         agent.get("/contacts/3").expect(404).end(done);
       });
