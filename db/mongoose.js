@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
+const { dbUrl } = require('../config');
 
 function initialize() {
     try {
-        const db = mongoose.connect(
-            'mongodb+srv://thembeats:thembeats212@cluster0.8epra.mongodb.net/test',
-            {
-                useNewUrlParser: true,
-                useCreateIndex: true,
-                useUnifiedTopology: true,
-            }
+        const db = mongoose.connect(dbUrl,
+            {useNewUrlParser: true,useCreateIndex: true,useUnifiedTopology: true}
         );
         console.log('database successfully connected');
     } catch (error) {
