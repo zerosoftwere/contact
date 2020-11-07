@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const { contactService } = require("../services");
-require("../db/mongoose");
 
 const routes = Router();
 
