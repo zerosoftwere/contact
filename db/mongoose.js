@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 mongoose
-  .connect(process.env.DB_CONNECT, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  })
+  .connect(
+    "mongodb+srv://thembeats:thembeats212@cluster0.8epra.mongodb.net/test",
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Database successfully connected");
   })

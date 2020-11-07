@@ -1,10 +1,11 @@
-const { Router } = require('express');
-const { contactService } = require('../services');
+const { Router } = require("express");
+const { contactService } = require("../services");
+require("../db/mongoose");
 
 const routes = Router();
 
-routes.get('', (req, res) => {
-    res.status(200).send(contactService.list());
+routes.get("", (req, res) => {
+  res.status(200).send(contactService.list());
 });
 
 routes.post('', (req, res) => {
