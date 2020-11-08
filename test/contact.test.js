@@ -33,7 +33,7 @@ describe("Contacts", function() {
     it("it should not get none existing contact", function(done) {
         sinon.stub(contactService, 'retrive').withArgs('3').returns(null);
         agent.get("/contacts/3").expect(404).end(done);
-      });
+    });
 
     it("it should create contact", function(done) {
         sinon.stub(contactService, 'create').returns({});
